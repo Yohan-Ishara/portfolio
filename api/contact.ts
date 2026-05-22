@@ -43,7 +43,7 @@ export default async function handler(request: ApiRequest, response: ApiResponse
 
   const validation = validatePayload(parsePayload(request.body));
 
-  if (!validation.valid) {
+  if (validation.valid === false) {
     response.status(400).json({ message: validation.message });
     return;
   }

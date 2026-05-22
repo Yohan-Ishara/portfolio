@@ -34,7 +34,7 @@ export async function handleContactRequest(method: string | undefined, payload: 
 
   const validation = validatePayload(payload);
 
-  if (!validation.valid) {
+  if (validation.valid === false) {
     return {
       status: 400,
       body: { message: validation.message },
