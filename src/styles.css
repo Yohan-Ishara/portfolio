@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #020617;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.32);
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.glass-card {
+  @apply border border-white/10 bg-white/[0.055] shadow-glow backdrop-blur-xl;
+}
+
+.light .glass-card {
+  @apply border-slate-200 bg-white/80 shadow-none;
+}
+
+.nav-link {
+  @apply rounded-full px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white;
+}
+
+.light .nav-link {
+  @apply text-slate-600 hover:bg-slate-100 hover:text-slate-950;
+}
+
+.nav-link-active {
+  @apply bg-cyan-400/[0.12] text-cyan-200 ring-1 ring-cyan-300/20;
+}
+
+.light .nav-link-active {
+  @apply bg-cyan-50 text-cyan-700 ring-cyan-200;
+}
+
+.field {
+  @apply w-full rounded-xl border border-white/10 bg-white/[0.055] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:ring-4 focus:ring-cyan-400/10;
+}
+
+.light .field {
+  @apply border-slate-200 bg-white text-slate-950 placeholder:text-slate-400 focus:border-cyan-500;
+}
