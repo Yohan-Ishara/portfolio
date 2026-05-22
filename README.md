@@ -76,6 +76,13 @@ Production note: for production, verify a custom domain in Resend and replace `o
 
 Note: this portfolio is a Vite React app, so the active deployed endpoint is `api/contact.ts`. A matching Next.js route is also included at `app/api/contact/route.ts` for compatibility if the project is migrated to Next.js later.
 
+Troubleshooting deployment:
+
+- Make sure `RESEND_API_KEY` is added to the same Vercel environment you deployed, usually Production.
+- Redeploy after adding or changing environment variables.
+- Open Vercel Function Logs for `/api/contact` to see safe Resend error details.
+- If `onboarding@resend.dev` fails in production, verify a sender domain in Resend and update `senderEmail` in `server/contact-email.ts`.
+
 ## Edit Portfolio Content
 
 Most editable portfolio content lives in:

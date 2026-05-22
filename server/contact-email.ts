@@ -53,16 +53,27 @@ export async function handleContactRequest(method: string | undefined, payload: 
   const { name, email, projectType, message } = validation.data;
   const resend = new Resend(apiKey);
 
-  const { error } = await resend.emails.send({
-    from: senderEmail,
-    to: [recipientEmail],
-    replyTo: email,
-    subject: `New portfolio contact request from ${name}`,
-    text: createPlainTextEmail({ name, email, projectType, message }),
-    html: createHtmlEmail({ name, email, projectType, message }),
-  });
+  try {
+    const { error } = await resend.emails.send({
+      from: senderEmail,
+      to: [recipientEmail],
+      replyTo: email,
+      subject: `New portfolio contact request from ${name}`,
+      text: createPlainTextEmail({ name, email, projectType, message }),
+      html: createHtmlEmail({ name, email, projectType, message }),
+    });
 
-  if (error) {
+    if (error) {
+      console.error('Resend send error:', sanitizeError(error));
+
+      return {
+        status: 502,
+        body: { message: getPublicResendMessage(error) },
+      };
+    }
+  } catch (error) {
+    console.error('Contact email exception:', sanitizeError(error));
+
     return {
       status: 502,
       body: { message: 'Could not send your message right now. Please try again later.' },
@@ -148,4 +159,43 @@ function escapeHtml(value: string) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+function sanitizeError(error: unknown) {
+  if (error instanceof Error) {
+    return {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+    };
+  }
+
+  return error;
+}
+
+function getPublicResendMessage(error: unknown) {
+  const message = getErrorMessage(error).toLowerCase();
+
+  if (message.includes('api key') || message.includes('unauthorized')) {
+    return 'Email service authentication failed. Please check the Vercel RESEND_API_KEY environment variable.';
+  }
+
+  if (message.includes('domain') || message.includes('sender') || message.includes('from')) {
+    return 'Email sender is not verified in Resend. Please verify a domain or use an allowed sender.';
+  }
+
+  return 'Could not send your message right now. Please try again later.';
+}
+
+function getErrorMessage(error: unknown) {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (typeof error === 'object' && error && 'message' in error) {
+    const message = (error as { message?: unknown }).message;
+    return typeof message === 'string' ? message : '';
+  }
+
+  return '';
 }
