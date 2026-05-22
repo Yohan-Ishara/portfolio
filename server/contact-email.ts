@@ -1,3 +1,5 @@
+import { Resend } from 'resend';
+
 declare const process: {
   env: {
     RESEND_API_KEY?: string;
@@ -19,6 +21,7 @@ type ContactResult = {
 };
 
 const recipientEmail = 'yohanishara01@gmail.com';
+const senderEmail = 'Yohan Portfolio <onboarding@resend.dev>';
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function handleContactRequest(method: string | undefined, payload: ContactPayload | null): Promise<ContactResult> {
@@ -48,24 +51,18 @@ export async function handleContactRequest(method: string | undefined, payload: 
   }
 
   const { name, email, projectType, message } = validation.data;
+  const resend = new Resend(apiKey);
 
-  const resendResponse = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: recipientEmail,
-      reply_to: email,
-      subject: `New portfolio contact request from ${name}`,
-      text: createPlainTextEmail({ name, email, projectType, message }),
-      html: createHtmlEmail({ name, email, projectType, message }),
-    }),
+  const { error } = await resend.emails.send({
+    from: senderEmail,
+    to: [recipientEmail],
+    replyTo: email,
+    subject: `New portfolio contact request from ${name}`,
+    text: createPlainTextEmail({ name, email, projectType, message }),
+    html: createHtmlEmail({ name, email, projectType, message }),
   });
 
-  if (!resendResponse.ok) {
+  if (error) {
     return {
       status: 502,
       body: { message: 'Could not send your message right now. Please try again later.' },
@@ -74,7 +71,7 @@ export async function handleContactRequest(method: string | undefined, payload: 
 
   return {
     status: 200,
-    body: { message: 'Thanks, your message has been sent.' },
+    body: { message: 'Thank you! Your message has been sent.' },
   };
 }
 
