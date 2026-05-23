@@ -38,7 +38,7 @@ export const navItems = [
 ];
 
 export const stats = [
-  '3+ Years Software Engineering Experience',
+  '5+ Years Software Engineering Experience',
   '4 Completed Upwork Jobs',
   '5.0 Upwork Rating',
   '$100+ Earned on Upwork',
@@ -49,7 +49,7 @@ export const skills = [
   {
     category: 'Backend',
     icon: ServerCog,
-    items: ['Java', 'Spring Boot', 'Spring Data JPA', 'Spring Security', 'REST APIs', 'Microservices', 'JWT', 'API Integration'],
+    items: ['Java', 'Spring Boot', 'Spring Data JPA', 'Spring Security', 'REST APIs', 'Microservices', 'Kafka', 'JWT', 'API Integration'],
   },
   {
     category: 'Databases',
@@ -74,7 +74,7 @@ export const experience = [
     role: 'Senior Software Engineer',
     period: 'Sep 2023 - Present',
     description:
-      'Working on healthcare software systems, patient management, insurance claim-related backend services, microservices, and enterprise backend development.',
+      'Developing a healthcare billing system integrated with AdvancedMD, including Excel file processing, Kafka messaging, parallel processing, and high-throughput backend services for healthcare revenue cycle workflows.',
   },
   {
     company: 'Dialog Axiata PLC',
@@ -101,13 +101,13 @@ export const experience = [
 
 export const projects = [
   {
-    title: 'Patient Management System',
+    title: 'Healthcare Billing System',
     role: 'Backend Developer',
-    impact: 'Improved healthcare workflow visibility across patient, referral, and claim-related operations.',
+    impact: 'Improved healthcare billing data processing through AdvancedMD integration, parallel execution, and Kafka-based asynchronous workflows.',
     description:
-      'A healthcare patient management system used to manage patient-related workflows, physician referrals, and insurance claim-related processes.',
-    work: ['Designed and implemented backend services', 'Developed REST APIs', 'Worked with PostgreSQL databases', 'Managed tasks in Agile environment', 'Delivered milestones with team coordination'],
-    technologies: ['Java', 'Spring Boot', 'Spring Data JPA', 'Spring Cloud Gateway', 'PostgreSQL', 'Docker', 'Swagger UI', 'REST APIs'],
+      'A healthcare billing platform used to process billing-related Excel files, integrate with AdvancedMD, and support high-throughput backend processing for healthcare operations.',
+    work: ['Designed and implemented backend billing services', 'Integrated backend workflows with AdvancedMD', 'Built Excel file processing flows', 'Implemented Kafka-based messaging', 'Worked on multi-parallel high-throughput processing', 'Delivered milestones with team coordination'],
+    technologies: ['Java', 'Spring Boot', 'Spring Data JPA', 'Kafka', 'AdvancedMD', 'Excel Processing', 'PostgreSQL', 'Docker', 'Swagger UI', 'REST APIs'],
   },
   {
     title: 'Price Revision Service',

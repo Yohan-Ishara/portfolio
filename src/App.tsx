@@ -100,7 +100,7 @@ function Hero() {
               <div className="absolute inset-x-6 bottom-6 rounded-3xl border border-white/10 bg-ink-950/78 p-5 backdrop-blur-xl light:bg-white/85">
                 <p className="text-sm text-cyan-200 light:text-cyan-700">{profile.role}</p>
                 <h2 className="mt-1 text-2xl font-bold text-white light:text-slate-950">Yohan Ishara</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300 light:text-slate-600">Java · Spring Boot · SaaS · Freelance delivery</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300 light:text-slate-600">Java · Spring Boot · Kafka · SaaS delivery</p>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ function About() {
           </div>
           <div className="glass-card rounded-3xl p-6 sm:p-8">
             <p className="text-lg leading-9 text-slate-300 light:text-slate-600">
-              I am a Software Engineer with 3+ years of experience in backend development, microservices, workflow automation, and enterprise web applications. I specialize in Java Spring Boot, REST APIs, PostgreSQL, Docker, CI/CD, and cloud-ready backend systems. I have worked with enterprise clients in healthcare and telecommunications, building scalable systems, workflow platforms, API integrations, and data-driven backend services. I also work with clients through Upwork, where I have completed Java development projects with 5-star feedback and quality-focused delivery.
+              I am a Software Engineer with 5+ years of overall experience in backend development, microservices, workflow automation, and enterprise web applications. I specialize in Java Spring Boot, REST APIs, PostgreSQL, Kafka, Docker, CI/CD, and cloud-ready backend systems. I have worked with enterprise clients in healthcare and telecommunications, including healthcare billing systems integrated with AdvancedMD, Excel file processing, high-throughput parallel processing, API integrations, and data-driven backend services. I also work with clients through Upwork, where I have completed Java development projects with 5-star feedback and quality-focused delivery.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-300 light:text-slate-600">
               <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 light:bg-slate-100"><MapPin size={16} /> Sri Lanka</span>
